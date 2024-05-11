@@ -1,0 +1,126 @@
+public class Main {
+  public static void main(String[] args) {
+    superheroi Homemdeferro = new superheroi("Homem de Ferro","tony stark", "");
+    Homemdeferro.setPoderes(new superpoder[]{new superpoder("Voo", 1, "", ""), new superpoder("Armadura Avançada", 2, "", ""), new superpoder("Arsenal de armas", 3, "", ""), new superpoder("Inteligência superior", 4, "", "")});
+    vilao Thanos = new vilao("Thanos","Thanos");
+    confronto batalha1 = new confronto();
+    int resultado = batalha1.executar(Homemdeferro, Thanos);
+    System.out.println("Resultado da batalha: " + resultado);
+  } 
+}
+public class personagem{
+private String nome;
+private String nomevidareal;
+private String poder;
+  //o poderes: vetor de 4 elementos do tipo Superpoder
+  private superpoder[] poderes = new superpoder[4];
+  //Construa um construtor que recebe como parâmetro o nome do personagem e o nome do seu poder.
+  public personagem(String nome, String nomevidarel, String poder){
+    this.nome = nome;
+    this.nomevidareal = nomevidarel;
+    this.poder = poder;
+  }
+  //Construa um método chamado getNome que retorna o nome do personagem.
+  public String getNome(){
+    return nome;
+  }
+  //Construa um método chamado getNomeVidaReal que retorna o nome do seu poder.
+  public String getNomeVidaReal(){
+    return nomevidareal;
+  }
+  //Construa um método chamado getPoder que retorna o poder do personagem.
+  public String getPoder(){
+    return poder;
+  }
+  //Construa um método chamado setNome que recebe como parâmetro o nome do personagem e atribui o valor ao atributo nome.
+  public void setNome(String nome){
+    this.nome = nome;
+  }
+  //Construa um método chamado setNomeVidaReal que recebe como parâmetro o nome do seu poder e atribui o valor ao atributo nomevidarel.
+  public void setNomeVidaReal(String nomevidarel){
+    this.nomevidareal = nomevidarel;
+  }
+  //Construa um método chamado setPoder que recebe como parâmetro o poder do personagem e atribui o valor ao atributo poder.
+  public void setPoder(String poder){
+    this.poder = poder;
+  }
+  //Construa um método chamado getPoderes que retorna o vetor de superpoderes.
+    public superpoder[] getPoderes() {
+          return poderes;
+      }
+      public void setPoderes(superpoder[] poderes) {
+          this.poderes = poderes;
+      }
+  }
+
+  
+  public class superpoder extends personagem {
+    private String nome;
+    private int categoria;
+    public superpoder(String nome, int categoria, String nomevidareal, String poder) {
+        super(nomevidareal, "", poder);
+
+        this.nome = nome;
+        this.categoria = categoria;
+    }
+    public String getNome() {
+        return nome;
+    }
+    public int getCategoria() {
+        return categoria;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
+}
+public class vilao extends personagem{
+  public int tempoprisao;
+    public vilao(String nome, String nomeVidaReal) {
+        super(nome, nomeVidaReal, "");
+    
+
+  }
+  
+   public superpoder[] getPoderes() {
+          return super.getPoderes();
+      }
+
+      public void setPoderes(superpoder[] poderes) {
+          super.setPoderes(poderes);
+      }
+  }
+public class confronto{
+   public int executar(superheroi superheroi, vilao vilao){
+     int poderSuper = 0;
+     int poderVilao = 0;
+     if (superheroi.getPoderes() != null) {
+       for (superpoder poder : superheroi.getPoderes()) {
+         poderSuper += poder.getCategoria();
+       }
+     }
+     if (vilao.getPoderes() != null) {
+       for (superpoder poder : vilao.getPoderes()) {
+         poderVilao += poder.getCategoria();
+       }
+     }
+     if(poderSuper > poderVilao){
+       return 1;
+     }
+     else if(poderVilao > poderSuper){
+       return 2;
+     }
+     else{
+       return 0;
+     }
+   }
+   }
+
+
+
+
+
+
+
